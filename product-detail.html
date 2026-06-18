@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="pageTitleTag">Product — VELOURX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="products.css"/>
+  <link rel="stylesheet" href="detail.css"/>
+</head>
+<body>
+
+  <div class="announce-bar">
+    <span>🔥 FREE SHIPPING ON ORDERS OVER $49</span>
+    <span class="sep">|</span>
+    <span>USE CODE <strong>VELOUR30</strong> FOR 30% OFF</span>
+    <span class="sep">|</span>
+    <span>NEW ARRIVALS EVERY FRIDAY ✨</span>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+    <div class="nav-logo"><a href="index.html">VELOURX</a></div>
+    <div class="nav-links" id="navLinks">
+      <a href="products.html?cat=men">Men</a>
+      <a href="products.html?cat=women">Women</a>
+      <a href="products.html?cat=kids">Kids</a>
+      <a href="products.html?cat=teens">Teens</a>
+      <a href="products.html?sale=true">Sale</a>
+      <a href="products.html">All Products</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-icon" onclick="window.location.href='products.html'" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="nav-icon" onclick="window.location.href='account.html'" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="nav-icon" onclick="window.location.href='cart.html'" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="products.html?cat=men">Men</a>
+    <a href="products.html?cat=women">Women</a>
+    <a href="products.html?cat=kids">Kids</a>
+    <a href="products.html?cat=teens">Teens</a>
+    <a href="products.html?sale=true">Sale</a>
+    <a href="account.html">My Account</a>
+    <a href="cart.html">Cart</a>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <div class="detail-breadcrumb">
+    <a href="index.html">Home</a> <span>›</span>
+    <a href="products.html" id="bcCat">Products</a> <span>›</span>
+    <span id="bcName">Product</span>
+  </div>
+
+  <!-- PRODUCT DETAIL MAIN -->
+  <section class="detail-main" id="detailMain">
+    <!-- Populated by JS -->
+  </section>
+
+  <!-- TABS: DESCRIPTION / REVIEWS / SHIPPING -->
+  <section class="detail-tabs-section">
+    <div class="detail-tabs">
+      <button class="dtab-btn active" data-tab="desc">Description</button>
+      <button class="dtab-btn" data-tab="reviews">Reviews <span id="reviewCountTab">(127)</span></button>
+      <button class="dtab-btn" data-tab="shipping">Shipping & Returns</button>
+    </div>
+
+    <div class="dtab-panel active" id="panel-desc">
+      <p id="descText"></p>
+      <ul class="detail-features">
+        <li>✓ Premium quality fabric, ethically sourced</li>
+        <li>✓ Machine washable, true-to-size fit</li>
+        <li>✓ Designed in-house by the VELOURX studio</li>
+        <li>✓ Sustainably packaged, recyclable materials</li>
+      </ul>
+    </div>
+
+    <div class="dtab-panel" id="panel-reviews">
+      <div class="reviews-summary">
+        <div class="rs-score">
+          <span class="rs-num">4.8</span>
+          <div class="rs-stars">★★★★★</div>
+          <span class="rs-count">Based on 127 reviews</span>
+        </div>
+        <div class="rs-bars">
+          <div class="rs-bar-row"><span>5★</span><div class="rs-bar"><div style="width:78%"></div></div><span>78%</span></div>
+          <div class="rs-bar-row"><span>4★</span><div class="rs-bar"><div style="width:14%"></div></div><span>14%</span></div>
+          <div class="rs-bar-row"><span>3★</span><div class="rs-bar"><div style="width:5%"></div></div><span>5%</span></div>
+          <div class="rs-bar-row"><span>2★</span><div class="rs-bar"><div style="width:2%"></div></div><span>2%</span></div>
+          <div class="rs-bar-row"><span>1★</span><div class="rs-bar"><div style="width:1%"></div></div><span>1%</span></div>
+        </div>
+      </div>
+
+      <div class="review-list" id="reviewList">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <div class="dtab-panel" id="panel-shipping">
+      <div class="shipping-grid">
+        <div class="shipping-block">
+          <h4>🚚 Delivery</h4>
+          <p>Standard delivery 3–5 business days (Free over $49). Express delivery 1–2 business days ($12.99).</p>
+        </div>
+        <div class="shipping-block">
+          <h4>↩️ Returns</h4>
+          <p>30-day free returns. Items must be unworn with original tags attached. Refunds processed within 5–7 business days.</p>
+        </div>
+        <div class="shipping-block">
+          <h4>🌍 International</h4>
+          <p>We ship to 50+ countries. Customs duties may apply depending on destination country.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- YOU MAY ALSO LIKE -->
+  <section class="related-section">
+    <div class="section-header">
+      <p class="section-eyebrow">Complete the Look</p>
+      <h2 class="section-title">You May Also Like</h2>
+    </div>
+    <div class="h-scroll-wrapper">
+      <button class="h-scroll-btn h-scroll-left" data-target="related-track">‹</button>
+      <div class="h-scroll-track" id="related-track"></div>
+      <button class="h-scroll-btn h-scroll-right" data-target="related-track">›</button>
+    </div>
+  </section>
+
+  <!-- RECENTLY VIEWED -->
+  <section class="recently-viewed-section" id="recentlyViewedSection" style="display:none;">
+    <div class="section-header">
+      <p class="section-eyebrow">Your History</p>
+      <h2 class="section-title">Recently Viewed</h2>
+    </div>
+    <div class="h-scroll-wrapper">
+      <div class="h-scroll-track" id="recent-track"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER (simplified) -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3 class="footer-logo">VELOURX</h3>
+        <p>Wear the World. Every style, every size, every story — all in one place.</p>
+        <div class="social-links">
+          <a href="#">📷</a><a href="#">🎵</a><a href="#">📌</a><a href="#">🐦</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Shop</h5>
+          <a href="products.html?cat=men">Men</a>
+          <a href="products.html?cat=women">Women</a>
+          <a href="products.html?cat=teens">Teens</a>
+          <a href="products.html?cat=kids">Kids</a>
+        </div>
+        <div class="footer-col">
+          <h5>Help</h5>
+          <a href="#">FAQs</a>
+          <a href="#">Shipping Info</a>
+          <a href="#">Returns</a>
+          <a href="#">Size Guide</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#">About Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+      <div class="footer-newsletter">
+        <h5>Get 10% Off</h5>
+        <p>Subscribe to our newsletter for exclusive deals.</p>
+        <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+          <input type="email" placeholder="your@email.com" required/>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 VELOURX. All rights reserved.</p>
+      <div class="payment-icons">
+        <span>VISA</span><span>MC</span><span>AMEX</span><span>PayPal</span><span>Apple Pay</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+  <script src="detail.js"></script>
+</body>
+</html>
