@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Products — VELOURX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="products.css"/>
+</head>
+<body>
+
+  <div class="announce-bar">
+    <span>🔥 FREE SHIPPING ON ORDERS OVER $49</span>
+    <span class="sep">|</span>
+    <span>USE CODE <strong>VELOUR30</strong> FOR 30% OFF</span>
+    <span class="sep">|</span>
+    <span>NEW ARRIVALS EVERY FRIDAY ✨</span>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+    <div class="nav-logo"><a href="index.html">VELOURX</a></div>
+    <div class="nav-links" id="navLinks">
+      <a href="products.html?cat=men">Men</a>
+      <a href="products.html?cat=women">Women</a>
+      <a href="products.html?cat=kids">Kids</a>
+      <a href="products.html?cat=teens">Teens</a>
+      <a href="products.html?sale=true">Sale</a>
+      <a href="products.html">All Products</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-icon" onclick="toggleSearchBar()" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="nav-icon" onclick="window.location.href='account.html'" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="nav-icon" onclick="window.location.href='cart.html'" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="products.html?cat=men">Men</a>
+    <a href="products.html?cat=women">Women</a>
+    <a href="products.html?cat=kids">Kids</a>
+    <a href="products.html?cat=teens">Teens</a>
+    <a href="products.html?sale=true">Sale</a>
+    <a href="account.html">My Account</a>
+    <a href="cart.html">Cart</a>
+  </div>
+
+  <div class="search-bar-drop" id="searchBarDrop">
+    <div class="search-bar-inner">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search products, categories…" autocomplete="off"/>
+      <button onclick="toggleSearchBar()">✕</button>
+    </div>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <p class="section-eyebrow">Explore</p>
+      <h1 class="page-hero-title" id="pageTitle">All Products</h1>
+      <p class="page-hero-sub" id="pageSubtitle">104 styles across Men, Women, Teens &amp; Kids</p>
+    </div>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span id="breadcrumbCurrent">All Products</span>
+    </div>
+  </div>
+
+  <div class="shop-layout">
+
+    <aside class="filter-sidebar" id="filterSidebar">
+      <div class="sidebar-header">
+        <h3>Filters</h3>
+        <button class="clear-filters-btn" id="clearFiltersBtn">Clear all</button>
+      </div>
+
+      <div class="filter-group">
+        <button class="filter-group-title" data-group="category">Category <span class="chevron open">›</span></button>
+        <div class="filter-group-body open" id="filter-category">
+          <label class="filter-check"><input type="checkbox" name="cat" value="men"/> Men</label>
+          <label class="filter-check"><input type="checkbox" name="cat" value="women"/> Women</label>
+          <label class="filter-check"><input type="checkbox" name="cat" value="teens"/> Teens</label>
+          <label class="filter-check"><input type="checkbox" name="cat" value="kids"/> Kids</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <button class="filter-group-title" data-group="price">Price <span class="chevron open">›</span></button>
+        <div class="filter-group-body open" id="filter-price">
+          <label class="filter-check"><input type="checkbox" name="price" value="0-40"/> Under $40</label>
+          <label class="filter-check"><input type="checkbox" name="price" value="40-80"/> $40 – $80</label>
+          <label class="filter-check"><input type="checkbox" name="price" value="80-120"/> $80 – $120</label>
+          <label class="filter-check"><input type="checkbox" name="price" value="120-999"/> Over $120</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <button class="filter-group-title" data-group="sub">Type <span class="chevron open">›</span></button>
+        <div class="filter-group-body open" id="filter-sub">
+          <label class="filter-check"><input type="checkbox" name="sub" value="Dresses"/> Dresses</label>
+          <label class="filter-check"><input type="checkbox" name="sub" value="Tops"/> Tops</label>
+          <label class="filter-check"><input type="checkbox" name="sub" value="Bottoms"/> Bottoms</label>
+          <label class="filter-check"><input type="checkbox" name="sub" value="Jackets"/> Jackets</label>
+          <label class="filter-check"><input type="checkbox" name="sub" value="Footwear"/> Footwear</label>
+          <label class="filter-check"><input type="checkbox" name="sub" value="Sets"/> Sets</label>
+          <label class="filter-check"><input type="checkbox" name="sub" value="Hoodies"/> Hoodies</label>
+          <label class="filter-check"><input type="checkbox" name="sub" value="Knitwear"/> Knitwear</label>
+          <label class="filter-check"><input type="checkbox" name="sub" value="Outerwear"/> Outerwear</label>
+          <label class="filter-check"><input type="checkbox" name="sub" value="Shirts"/> Shirts</label>
+          <label class="filter-check"><input type="checkbox" name="sub" value="Skirts"/> Skirts</label>
+          <label class="filter-check"><input type="checkbox" name="sub" value="Activewear"/> Activewear</label>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <button class="filter-group-title" data-group="status">Status <span class="chevron open">›</span></button>
+        <div class="filter-group-body open" id="filter-status">
+          <label class="filter-check"><input type="checkbox" name="status" value="new"/> New Arrivals</label>
+          <label class="filter-check"><input type="checkbox" name="status" value="sale"/> On Sale</label>
+        </div>
+      </div>
+
+      <div class="active-filter-tags" id="activeFilterTags"></div>
+    </aside>
+
+    <div class="filter-overlay" id="filterOverlay"></div>
+
+    <main class="products-main">
+      <div class="products-toolbar">
+        <div class="toolbar-left">
+          <button class="mobile-filter-btn" id="mobileFilterBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+            Filters
+          </button>
+          <span class="results-count" id="resultsCount">104 products</span>
+        </div>
+        <div class="toolbar-right">
+          <div class="sort-wrap">
+            <label for="sortSelect">Sort:</label>
+            <select id="sortSelect" class="sort-select">
+              <option value="default">Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="new">New Arrivals</option>
+              <option value="sale">On Sale</option>
+              <option value="name">Name A–Z</option>
+            </select>
+          </div>
+          <div class="view-toggle">
+            <button class="view-btn active" data-cols="4" title="4 columns">⊞</button>
+            <button class="view-btn" data-cols="2" title="2 columns">⊟</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="products-grid cols-4" id="productsGrid"></div>
+
+      <div class="load-more-wrap" id="loadMoreWrap">
+        <button class="load-more-btn" id="loadMoreBtn">Load More Products</button>
+        <p class="load-more-info" id="loadMoreInfo"></p>
+      </div>
+
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <div class="empty-icon">🔍</div>
+        <h3>No products found</h3>
+        <p>Try adjusting your filters or search term.</p>
+        <button class="btn-primary" onclick="clearAllFilters()">Clear Filters</button>
+      </div>
+    </main>
+  </div>
+
+  <div class="qv-overlay" id="qvOverlay">
+    <div class="qv-modal" id="qvModal">
+      <button class="qv-close" id="qvClose">✕</button>
+      <div class="qv-inner" id="qvInner"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+  <script src="products.js"></script>
+</body>
+</html>
