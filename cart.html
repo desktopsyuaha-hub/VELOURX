@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart — VELOURX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="cart.css"/>
+</head>
+<body>
+
+  <div class="announce-bar">
+    <span>🔥 FREE SHIPPING ON ORDERS OVER $49</span>
+    <span class="sep">|</span>
+    <span>USE CODE <strong>VELOUR30</strong> FOR 30% OFF</span>
+    <span class="sep">|</span>
+    <span>NEW ARRIVALS EVERY FRIDAY ✨</span>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+    <div class="nav-logo"><a href="index.html">VELOURX</a></div>
+    <div class="nav-links" id="navLinks">
+      <a href="products.html?cat=men">Men</a>
+      <a href="products.html?cat=women">Women</a>
+      <a href="products.html?cat=kids">Kids</a>
+      <a href="products.html?cat=teens">Teens</a>
+      <a href="products.html?sale=true">Sale</a>
+      <a href="products.html">All Products</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-icon" onclick="window.location.href='products.html'" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="nav-icon" onclick="window.location.href='account.html'" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="nav-icon cart-btn active-page" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="products.html?cat=men">Men</a>
+    <a href="products.html?cat=women">Women</a>
+    <a href="products.html?cat=kids">Kids</a>
+    <a href="products.html?cat=teens">Teens</a>
+    <a href="products.html?sale=true">Sale</a>
+    <a href="account.html">My Account</a>
+    <a href="cart.html">Cart</a>
+  </div>
+
+  <!-- CART HEADER -->
+  <div class="cart-page-header">
+    <h1>Your Shopping Cart</h1>
+    <p id="cartItemSummary">Loading your cart…</p>
+  </div>
+
+  <!-- CART STEPS -->
+  <div class="cart-steps">
+    <div class="cart-step active"><span class="step-num">1</span> Cart</div>
+    <div class="step-line"></div>
+    <div class="cart-step"><span class="step-num">2</span> Shipping</div>
+    <div class="step-line"></div>
+    <div class="cart-step"><span class="step-num">3</span> Payment</div>
+  </div>
+
+  <!-- MAIN CART LAYOUT -->
+  <div class="cart-layout" id="cartLayout">
+
+    <!-- CART ITEMS -->
+    <div class="cart-items-col">
+      <div class="cart-items-header">
+        <span>Product</span>
+        <span class="ch-price">Price</span>
+        <span class="ch-qty">Quantity</span>
+        <span class="ch-total">Total</span>
+      </div>
+      <div id="cartItemsList"><!-- populated by JS --></div>
+
+      <div class="cart-actions-row">
+        <a href="products.html" class="continue-shopping-link">← Continue Shopping</a>
+        <button class="clear-cart-btn" id="clearCartBtn">Clear Cart</button>
+      </div>
+    </div>
+
+    <!-- ORDER SUMMARY -->
+    <div class="cart-summary-col">
+      <div class="summary-box">
+        <h3>Order Summary</h3>
+
+        <div class="promo-box">
+          <input type="text" id="promoInput" placeholder="Discount code"/>
+          <button id="applyPromoBtn">Apply</button>
+        </div>
+        <p class="promo-msg" id="promoMsg"></p>
+
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="sumSubtotal">$0.00</span>
+        </div>
+        <div class="summary-row" id="discountRow" style="display:none;">
+          <span>Discount <span id="discountLabel"></span></span>
+          <span id="sumDiscount" class="discount-amt">-$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span id="sumShipping">FREE</span>
+        </div>
+        <div class="summary-row">
+          <span>Estimated Tax</span>
+          <span id="sumTax">$0.00</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span id="sumTotal">$0.00</span>
+        </div>
+
+        <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout →</button>
+
+        <div class="trust-badges">
+          <span>🔒 Secure Checkout</span>
+          <span>↩️ Free Returns</span>
+        </div>
+
+        <div class="payment-icons-row">
+          <span>VISA</span><span>MC</span><span>AMEX</span><span>PayPal</span><span>Apple Pay</span>
+        </div>
+      </div>
+
+      <div class="gift-note-box">
+        <label class="gift-toggle">
+          <input type="checkbox" id="giftToggle"/> This order is a gift
+        </label>
+        <textarea id="giftMessage" placeholder="Add a gift message…" style="display:none;"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- EMPTY CART STATE -->
+  <div class="empty-cart" id="emptyCart" style="display:none;">
+    <div class="empty-cart-icon">🛒</div>
+    <h2>Your cart is empty</h2>
+    <p>Looks like you haven't added anything yet. Let's fix that.</p>
+    <a href="products.html" class="btn-primary">Start Shopping</a>
+  </div>
+
+  <!-- YOU MIGHT ALSO LIKE -->
+  <section class="cart-upsell-section" id="cartUpsellSection">
+    <div class="section-header">
+      <p class="section-eyebrow">Don't Forget</p>
+      <h2 class="section-title">Add These to Your Order</h2>
+    </div>
+    <div class="h-scroll-wrapper">
+      <button class="h-scroll-btn h-scroll-left" data-target="upsell-track">‹</button>
+      <div class="h-scroll-track" id="upsell-track"></div>
+      <button class="h-scroll-btn h-scroll-right" data-target="upsell-track">›</button>
+    </div>
+  </section>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+  <script src="cart.js"></script>
+</body>
+</html>
+
