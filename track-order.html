@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Track Order — VELOURX</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/><link rel="stylesheet" href="pages.css"/>
+</head>
+<body>
+  <div class="announce-bar"><span>🔥 FREE SHIPPING ON ORDERS OVER $49</span><span class="sep">|</span><span>USE CODE <strong>VELOUR30</strong> FOR 30% OFF</span></div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-left"><button class="hamburger" id="hamburger"><span></span><span></span><span></span></button></div>
+    <div class="nav-logo"><a href="index.html">VELOURX</a></div>
+    <div class="nav-links"><a href="products.html?cat=men">Men</a><a href="products.html?cat=women">Women</a><a href="products.html?cat=kids">Kids</a><a href="products.html?cat=teens">Teens</a><a href="products.html?sale=true">Sale</a><a href="products.html">All Products</a></div>
+    <div class="nav-right">
+      <button class="nav-icon" onclick="window.location.href='account.html'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+      <button class="nav-icon" onclick="window.location.href='cart.html'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count" id="cartCount">0</span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="products.html">All Products</a><a href="account.html">My Account</a><a href="cart.html">Cart</a></div>
+  <div class="page-hero"><div class="page-hero-content"><p class="section-eyebrow">Delivery Status</p><h1 class="page-hero-title">Track Your Order</h1><p class="page-hero-sub">Real-time updates on where your order is.</p></div><div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Track Order</span></div></div>
+  <section class="page-content">
+    <div class="track-form-box">
+      <h3>Find Your Order</h3>
+      <p>Enter your order number (from your confirmation email) and the email you used to place the order.</p>
+      <input type="text" id="trackOrderId" placeholder="Order number e.g. VX12345678"/>
+      <input type="email" id="trackEmail" placeholder="Email address"/>
+      <button class="btn-primary" style="width:100%;" onclick="trackOrder()">Track Order</button>
+      <div class="track-result" id="trackResult">
+        <p style="font-size:14px;color:#2C8C4A;font-weight:700;margin-bottom:12px;">✓ Order Found — Currently In Transit</p>
+        <div class="track-steps">
+          <div class="track-step"><div class="ts-dot done">✓</div><div class="ts-info"><strong>Order Confirmed</strong><span id="ts1date"></span></div></div>
+          <div class="track-step"><div class="ts-dot done">✓</div><div class="ts-info"><strong>Order Dispatched</strong><span id="ts2date"></span></div></div>
+          <div class="track-step"><div class="ts-dot active">→</div><div class="ts-info"><strong>In Transit</strong><span>On the way to your address</span></div></div>
+          <div class="track-step"><div class="ts-dot">📦</div><div class="ts-info"><strong>Out for Delivery</strong><span>Expected <span id="tsDelivery"></span></span></div></div>
+          <div class="track-step"><div class="ts-dot">🏠</div><div class="ts-info"><strong>Delivered</strong><span>Awaiting delivery</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;"><p style="color:var(--grey);font-size:14px;">Have an account? <a href="account.html" style="color:var(--gold);font-weight:600;">Log in</a> to see all your orders in one place.</p></div>
+  </section>
+  <footer class="site-footer"><div class="footer-bottom" style="padding:24px 64px;"><p>© 2025 VELOURX. All rights reserved. · <a href="index.html" style="color:var(--gold)">Back to Home</a></p></div></footer>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      updateCartCount();
+      const n=document.getElementById('navbar');
+      window.addEventListener('scroll',()=>n&&n.classList.toggle('scrolled',window.scrollY>60));
+      const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');
+      if(h&&m)h.addEventListener('click',()=>m.classList.toggle('open'));
+      // prefill from saved orders
+      const params=new URLSearchParams(window.location.search);
+      const oid=params.get('order');
+      if(oid){document.getElementById('trackOrderId').value=oid;}
+    });
+    function trackOrder(){
+      const oid=document.getElementById('trackOrderId').value.trim();
+      const email=document.getElementById('trackEmail').value.trim();
+      if(!oid){showToast('Please enter your order number');return;}
+      // check localStorage orders
+      const orders=JSON.parse(localStorage.getItem('velourx_orders')||'[]');
+      const found=orders.find(o=>o.id===oid||(oid.startsWith('VX')&&o.id===oid));
+      const result=document.getElementById('trackResult');
+      if(found){
+        const d=new Date(found.date);
+        const d2=new Date(d);d2.setDate(d2.getDate()+2);
+        const d3=new Date(d);d3.setDate(d3.getDate()+6);
+        const fmt=dt=>dt.toLocaleDateString('en-US',{month:'short',day:'numeric'});
+        document.getElementById('ts1date').textContent=fmt(d);
+        document.getElementById('ts2date').textContent=fmt(d2);
+        document.getElementById('tsDelivery').textContent=fmt(d3);
+        result.classList.add('show');
+      } else {
+        showToast('Order not found. Check your order number and try again.');
+      }
+    }
+  </script>
+</body>
+</html>
+
