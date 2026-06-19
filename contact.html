@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — VELOURX</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/><link rel="stylesheet" href="pages.css"/>
+</head>
+<body>
+  <div class="announce-bar"><span>🔥 FREE SHIPPING ON ORDERS OVER $49</span><span class="sep">|</span><span>USE CODE <strong>VELOUR30</strong> FOR 30% OFF</span></div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-left"><button class="hamburger" id="hamburger"><span></span><span></span><span></span></button></div>
+    <div class="nav-logo"><a href="index.html">VELOURX</a></div>
+    <div class="nav-links"><a href="products.html?cat=men">Men</a><a href="products.html?cat=women">Women</a><a href="products.html?cat=kids">Kids</a><a href="products.html?cat=teens">Teens</a><a href="products.html?sale=true">Sale</a><a href="products.html">All Products</a></div>
+    <div class="nav-right">
+      <button class="nav-icon" onclick="window.location.href='account.html'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+      <button class="nav-icon" onclick="window.location.href='cart.html'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count" id="cartCount">0</span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="products.html">All Products</a><a href="account.html">My Account</a><a href="cart.html">Cart</a></div>
+  <div class="page-hero"><div class="page-hero-content"><p class="section-eyebrow">Get In Touch</p><h1 class="page-hero-title">Contact Us</h1><p class="page-hero-sub">We usually reply within 2 hours.</p></div><div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Contact</span></div></div>
+  <section class="page-content">
+    <div class="contact-grid">
+      <div>
+        <h3 style="font-family:var(--font-display);font-size:22px;color:var(--navy);margin-bottom:24px;">Send us a message</h3>
+        <form class="contact-form" onsubmit="submitContact(event)">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <input type="text" placeholder="First Name" required/>
+            <input type="text" placeholder="Last Name" required/>
+          </div>
+          <input type="email" placeholder="Email Address" required/>
+          <select required><option value="">Subject</option><option>Order Issue</option><option>Return Request</option><option>Product Question</option><option>Shipping Query</option><option>Other</option></select>
+          <textarea placeholder="How can we help you?" required></textarea>
+          <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+      </div>
+      <div>
+        <h3 style="font-family:var(--font-display);font-size:22px;color:var(--navy);margin-bottom:24px;">Other ways to reach us</h3>
+        <div class="contact-info-list">
+          <div class="ci-item"><div class="ci-icon">📧</div><div><strong>Email</strong><p>support@velourx.com<br/>We reply within 2–4 hours, Mon–Fri</p></div></div>
+          <div class="ci-item"><div class="ci-icon">💬</div><div><strong>Live Chat</strong><p>Available on our website Mon–Fri, 9 AM–6 PM EST. Look for the chat bubble.</p></div></div>
+          <div class="ci-item"><div class="ci-icon">📦</div><div><strong>Order Issues</strong><p>Have your order number ready. Check <a href="track-order.html" style="color:var(--gold)">Track Order</a> first — it's usually faster!</p></div></div>
+          <div class="ci-item"><div class="ci-icon">🕐</div><div><strong>Response Times</strong><p>Email: within 4 hours<br/>Social media: within 24 hours<br/>During sales: up to 48 hours</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer"><div class="footer-bottom" style="padding:24px 64px;"><p>© 2025 VELOURX. All rights reserved. · <a href="index.html" style="color:var(--gold)">Back to Home</a></p></div></footer>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{updateCartCount();const n=document.getElementById('navbar');window.addEventListener('scroll',()=>n&&n.classList.toggle('scrolled',window.scrollY>60));const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');if(h&&m)h.addEventListener('click',()=>m.classList.toggle('open'));});
+    function submitContact(e){e.preventDefault();showToast('✓ Message sent! We\'ll reply within 4 hours.');e.target.reset();}
+  </script>
+</body>
+</html>
+
