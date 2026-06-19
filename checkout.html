@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout — VELOURX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="checkout.css"/>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+
+  <nav class="navbar checkout-nav" id="navbar">
+    <div class="nav-logo"><a href="index.html">VELOURX</a></div>
+    <div class="checkout-secure-badge">🔒 Secure Checkout</div>
+  </nav>
+
+  <!-- STEPS -->
+  <div class="cart-steps">
+    <div class="cart-step done"><span class="step-num">✓</span> Cart</div>
+    <div class="step-line done"></div>
+    <div class="cart-step active" id="stepShipping"><span class="step-num">2</span> Shipping</div>
+    <div class="step-line"></div>
+    <div class="cart-step" id="stepPayment"><span class="step-num">3</span> Payment</div>
+  </div>
+
+  <!-- MAIN CHECKOUT LAYOUT -->
+  <div class="checkout-layout" id="checkoutLayout">
+
+    <!-- LEFT: FORMS -->
+    <div class="checkout-forms-col">
+
+      <!-- CONTACT -->
+      <div class="checkout-section">
+        <div class="cs-header">
+          <h3>1. Contact Information</h3>
+          <span class="cs-login-hint" id="loginHint">Have an account? <a href="account.html">Log in</a> for faster checkout</span>
+        </div>
+        <div class="form-grid">
+          <input type="email" id="contactEmail" placeholder="Email Address" required/>
+          <input type="tel" id="contactPhone" placeholder="Phone Number" required/>
+        </div>
+        <label class="checkout-check">
+          <input type="checkbox" id="emailOffers" checked/> Email me with news and offers
+        </label>
+      </div>
+
+      <!-- SHIPPING ADDRESS -->
+      <div class="checkout-section">
+        <h3>2. Shipping Address</h3>
+        <div class="form-grid">
+          <input type="text" id="shipFirstName" placeholder="First Name" required/>
+          <input type="text" id="shipLastName" placeholder="Last Name" required/>
+        </div>
+        <input type="text" id="shipAddress" placeholder="Street Address" required/>
+        <input type="text" id="shipApt" placeholder="Apartment, suite, etc. (optional)"/>
+        <div class="form-grid form-grid-3">
+          <input type="text" id="shipCity" placeholder="City" required/>
+          <input type="text" id="shipState" placeholder="State / Province" required/>
+          <input type="text" id="shipZip" placeholder="ZIP / Postal Code" required/>
+        </div>
+        <select id="shipCountry" required>
+          <option value="">Select Country</option>
+          <option value="US" selected>United States</option>
+          <option value="CA">Canada</option>
+          <option value="GB">United Kingdom</option>
+          <option value="AU">Australia</option>
+          <option value="IN">India</option>
+          <option value="AE">United Arab Emirates</option>
+          <option value="DE">Germany</option>
+          <option value="FR">France</option>
+        </select>
+        <label class="checkout-check">
+          <input type="checkbox" id="saveAddressCheck"/> Save this address for next time
+        </label>
+      </div>
+
+      <!-- SHIPPING METHOD -->
+      <div class="checkout-section">
+        <h3>3. Shipping Method</h3>
+        <div class="shipping-options" id="shippingOptions">
+          <label class="ship-option selected">
+            <input type="radio" name="shipMethod" value="free" checked/>
+            <div class="ship-option-info">
+              <span class="ship-name">Standard Shipping</span>
+              <span class="ship-time">5–7 business days</span>
+            </div>
+            <span class="ship-price" id="shipFreeLabel">FREE</span>
+          </label>
+          <label class="ship-option">
+            <input type="radio" name="shipMethod" value="express"/>
+            <div class="ship-option-info">
+              <span class="ship-name">Express Shipping</span>
+              <span class="ship-time">2–3 business days</span>
+            </div>
+            <span class="ship-price">$12.99</span>
+          </label>
+          <label class="ship-option">
+            <input type="radio" name="shipMethod" value="overnight"/>
+            <div class="ship-option-info">
+              <span class="ship-name">Overnight Shipping</span>
+              <span class="ship-time">Next business day</span>
+            </div>
+            <span class="ship-price">$24.99</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- PAYMENT -->
+      <div class="checkout-section">
+        <h3>4. Payment</h3>
+        <p class="payment-secure-note">🔒 All transactions are secure and encrypted via Stripe.</p>
+
+        <div class="payment-method-tabs">
+          <button type="button" class="pm-tab active" data-method="card">💳 Card</button>
+        </div>
+
+        <div id="card-element" class="stripe-card-element"><!-- Stripe Elements mounts here --></div>
+        <div id="card-errors" class="card-errors" role="alert"></div>
+
+        <div class="billing-same">
+          <label class="checkout-check">
+            <input type="checkbox" id="billingSameCheck" checked/> Billing address same as shipping
+          </label>
+        </div>
+      </div>
+
+      <button class="place-order-btn" id="placeOrderBtn">
+        <span id="placeOrderText">Pay & Place Order — <span id="placeOrderAmount">$0.00</span></span>
+        <span id="placeOrderSpinner" style="display:none;">Processing…</span>
+      </button>
+      <p class="checkout-disclaimer">By placing your order, you agree to VELOURX's Terms of Service and Privacy Policy.</p>
+    </div>
+
+    <!-- RIGHT: ORDER SUMMARY -->
+    <div class="checkout-summary-col">
+      <div class="checkout-summary-box">
+        <h3>Order Summary</h3>
+        <div class="co-items-list" id="coItemsList"><!-- populated by JS --></div>
+
+        <div class="promo-box">
+          <input type="text" id="checkoutPromoInput" placeholder="Discount code"/>
+          <button id="checkoutApplyPromoBtn">Apply</button>
+        </div>
+        <p class="promo-msg" id="checkoutPromoMsg"></p>
+
+        <div class="summary-row"><span>Subtotal</span><span id="coSubtotal">$0.00</span></div>
+        <div class="summary-row" id="coDiscountRow" style="display:none;"><span>Discount <span id="coDiscountLabel"></span></span><span id="coDiscount" class="discount-amt">-$0.00</span></div>
+        <div class="summary-row"><span>Shipping</span><span id="coShipping">FREE</span></div>
+        <div class="summary-row"><span>Estimated Tax</span><span id="coTax">$0.00</span></div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total-row"><span>Total</span><span id="coTotal">$0.00</span></div>
+
+        <div class="trust-badges">
+          <span>🔒 SSL Secure</span>
+          <span>↩️ Free Returns</span>
+          <span>💳 Stripe Verified</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER SUCCESS MODAL -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-box">
+      <div class="success-icon">✓</div>
+      <h2>Order Confirmed!</h2>
+      <p>Thank you<span id="successName"></span>! Your order <strong id="successOrderId"></strong> has been placed successfully.</p>
+      <p class="success-email">A confirmation email is on its way to <span id="successEmail"></span></p>
+      <div class="success-total-box">
+        <span>Total Paid</span>
+        <strong id="successTotal">$0.00</strong>
+      </div>
+      <a href="account.html" class="btn-primary">View My Orders</a>
+      <a href="products.html" class="success-continue">Continue Shopping</a>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script type="module" src="firebase-config.js"></script>
+  <script src="app.js"></script>
+  <script src="checkout.js"></script>
+</body>
+</html>
+
