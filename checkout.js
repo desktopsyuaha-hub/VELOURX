@@ -9,7 +9,7 @@
    It starts with "pk_test_..."
    Your SECRET key (sk_test_...) goes in Netlify env vars, NEVER here.
    ==================================================== */
-const STRIPE_PUBLISHABLE_KEY = "pk_test_YOUR_PUBLISHABLE_KEY_HERE";
+const STRIPE_PUBLISHABLE_KEY = "pk_test_51TjvqiCYJ3lT3Rl1Hv2in34Y6sRLYZEvJfsuf49Abwj94xlFvnKvTVlmK4NeZwftmFQkUoa1kyX1jQXMSAS3d0mo00tyVnn6J0";
 
 let stripe = null;
 let cardElement = null;
