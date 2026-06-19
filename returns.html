@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Returns — VELOURX</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/><link rel="stylesheet" href="pages.css"/>
+</head>
+<body>
+  <div class="announce-bar"><span>🔥 FREE SHIPPING ON ORDERS OVER $49</span><span class="sep">|</span><span>USE CODE <strong>VELOUR30</strong> FOR 30% OFF</span></div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-left"><button class="hamburger" id="hamburger"><span></span><span></span><span></span></button></div>
+    <div class="nav-logo"><a href="index.html">VELOURX</a></div>
+    <div class="nav-links"><a href="products.html?cat=men">Men</a><a href="products.html?cat=women">Women</a><a href="products.html?cat=kids">Kids</a><a href="products.html?cat=teens">Teens</a><a href="products.html?sale=true">Sale</a><a href="products.html">All Products</a></div>
+    <div class="nav-right">
+      <button class="nav-icon" onclick="window.location.href='account.html'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+      <button class="nav-icon" onclick="window.location.href='cart.html'"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg><span class="cart-count" id="cartCount">0</span></button>
+    </div>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="products.html">All Products</a><a href="account.html">My Account</a><a href="cart.html">Cart</a></div>
+  <div class="page-hero"><div class="page-hero-content"><p class="section-eyebrow">Hassle-Free</p><h1 class="page-hero-title">Returns & Refunds</h1><p class="page-hero-sub">30-day free returns on every order, no questions asked.</p></div><div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Returns</span></div></div>
+  <section class="page-content">
+    <div class="info-highlight"><p>↩️ <strong>30-day free returns</strong> — if you're not 100% happy, we'll make it right. No restocking fees, no drama.</p></div>
+    <div class="info-grid">
+      <div class="info-card"><h3>✅ What Can Be Returned</h3><ul><li>Items in original condition — unworn, unwashed</li><li>Items with all original tags still attached</li><li>Items in original packaging</li><li>Items within 30 days of delivery date</li></ul></div>
+      <div class="info-card"><h3>❌ What Cannot Be Returned</h3><ul><li>Items marked as "Final Sale"</li><li>Underwear, swimwear (hygiene reasons)</li><li>Items that have been worn, washed or damaged</li><li>Items returned after 30 days</li></ul></div>
+      <div class="info-card"><h3>💸 Refund Timeline</h3><p>Once we receive and inspect your return:<br/><br/><strong>Refund approved:</strong> within 3–5 business days<br/><strong>Back to your bank:</strong> additional 5–7 business days<br/><strong>Store credit:</strong> instant upon approval</p></div>
+      <div class="info-card"><h3>🔄 Exchanges</h3><p>Want a different size or colour? We process exchanges the same as returns — send back your item and place a new order. Your refund will cover the original purchase amount.</p></div>
+    </div>
+    <div class="info-card"><h3>📋 How to Start a Return</h3><ul><li><strong>Step 1:</strong> Log into your <a href="account.html" style="color:var(--gold)">VELOURX account</a> → go to My Orders → click "Return Item"</li><li><strong>Step 2:</strong> Select the item(s) and reason for return</li><li><strong>Step 3:</strong> Print your free prepaid return label (emailed to you instantly)</li><li><strong>Step 4:</strong> Drop the parcel at any post office</li><li><strong>Step 5:</strong> Receive your refund within 3–5 business days of us receiving it</li></ul></div>
+  </section>
+  <footer class="site-footer"><div class="footer-bottom" style="padding:24px 64px;"><p>© 2025 VELOURX. All rights reserved. · <a href="index.html" style="color:var(--gold)">Back to Home</a></p></div></footer>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',()=>{updateCartCount();const n=document.getElementById('navbar');window.addEventListener('scroll',()=>n&&n.classList.toggle('scrolled',window.scrollY>60));const h=document.getElementById('hamburger'),m=document.getElementById('mobileMenu');if(h&&m)h.addEventListener('click',()=>m.classList.toggle('open'));});</script>
+</body>
+</html>
+
