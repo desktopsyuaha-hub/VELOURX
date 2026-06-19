@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Account — VELOURX</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="account.css"/>
+</head>
+<body>
+
+  <div class="announce-bar">
+    <span>🔥 FREE SHIPPING ON ORDERS OVER $49</span>
+    <span class="sep">|</span>
+    <span>USE CODE <strong>VELOUR30</strong> FOR 30% OFF</span>
+    <span class="sep">|</span>
+    <span>NEW ARRIVALS EVERY FRIDAY ✨</span>
+  </div>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-left">
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+    <div class="nav-logo"><a href="index.html">VELOURX</a></div>
+    <div class="nav-links" id="navLinks">
+      <a href="products.html?cat=men">Men</a>
+      <a href="products.html?cat=women">Women</a>
+      <a href="products.html?cat=kids">Kids</a>
+      <a href="products.html?cat=teens">Teens</a>
+      <a href="products.html?sale=true">Sale</a>
+      <a href="products.html">All Products</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-icon" onclick="window.location.href='products.html'" aria-label="Search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </button>
+      <button class="nav-icon active-page" aria-label="Account">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="nav-icon" onclick="window.location.href='cart.html'" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="products.html?cat=men">Men</a>
+    <a href="products.html?cat=women">Women</a>
+    <a href="products.html?cat=kids">Kids</a>
+    <a href="products.html?cat=teens">Teens</a>
+    <a href="products.html?sale=true">Sale</a>
+    <a href="account.html">My Account</a>
+    <a href="cart.html">Cart</a>
+  </div>
+
+  <!-- ===================== LOADING STATE ===================== -->
+  <div class="auth-loading" id="authLoading">
+    <div class="spinner"></div>
+    <p>Loading your account…</p>
+  </div>
+
+  <!-- ===================== LOGGED OUT: AUTH FORMS ===================== -->
+  <div class="auth-wrapper" id="authWrapper" style="display:none;">
+    <div class="auth-card">
+
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Log In</button>
+        <button class="auth-tab" data-tab="signup">Sign Up</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form class="auth-form active" id="loginForm">
+        <h2>Welcome Back</h2>
+        <p class="auth-sub">Log in to access your orders, wishlist & saved cart.</p>
+
+        <label class="auth-label">Email Address</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com" required/>
+
+        <label class="auth-label">Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required/>
+
+        <p class="auth-error" id="loginError"></p>
+
+        <button type="submit" class="auth-submit-btn" id="loginSubmitBtn">Log In</button>
+
+        <div class="auth-divider"><span>or</span></div>
+
+        <button type="button" class="google-btn" id="googleLoginBtn">
+          <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.81.54-1.84.87-3.04.87-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.97 10.73A5.4 5.4 0 0 1 3.68 9c0-.6.1-1.2.29-1.73V4.94H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.06l3.01-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.94l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/></svg>
+          Continue with Google
+        </button>
+
+        <p class="auth-switch">Don't have an account? <a href="#" data-switch="signup">Sign up free</a></p>
+      </form>
+
+      <!-- SIGNUP FORM -->
+      <form class="auth-form" id="signupForm">
+        <h2>Create Your Account</h2>
+        <p class="auth-sub">Join VELOURX for faster checkout & order tracking.</p>
+
+        <label class="auth-label">Full Name</label>
+        <input type="text" id="signupName" placeholder="Your full name" required/>
+
+        <label class="auth-label">Email Address</label>
+        <input type="email" id="signupEmail" placeholder="you@example.com" required/>
+
+        <label class="auth-label">Password</label>
+        <input type="password" id="signupPassword" placeholder="At least 6 characters" required minlength="6"/>
+
+        <label class="auth-check">
+          <input type="checkbox" required/> I agree to the Terms of Service & Privacy Policy
+        </label>
+
+        <p class="auth-error" id="signupError"></p>
+
+        <button type="submit" class="auth-submit-btn" id="signupSubmitBtn">Create Account</button>
+
+        <div class="auth-divider"><span>or</span></div>
+
+        <button type="button" class="google-btn" id="googleSignupBtn">
+          <svg width="18" height="18" viewBox="0 0 18 18"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.81.54-1.84.87-3.04.87-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.97 10.73A5.4 5.4 0 0 1 3.68 9c0-.6.1-1.2.29-1.73V4.94H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.06l3.01-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.94l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/></svg>
+          Sign up with Google
+        </button>
+
+        <p class="auth-switch">Already have an account? <a href="#" data-switch="login">Log in</a></p>
+      </form>
+
+    </div>
+
+    <div class="auth-side-panel">
+      <h3>Why join VELOURX?</h3>
+      <ul>
+        <li>⚡ Faster checkout — no re-entering details</li>
+        <li>📦 Track your orders in real time</li>
+        <li>💛 Save items to your wishlist</li>
+        <li>🎁 Get 10% off your first order</li>
+        <li>🔔 Early access to new drops & sales</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===================== LOGGED IN: DASHBOARD ===================== -->
+  <div class="dashboard-wrapper" id="dashboardWrapper" style="display:none;">
+
+    <div class="dashboard-header">
+      <div class="dash-avatar" id="dashAvatar">D</div>
+      <div>
+        <p class="dash-welcome">Welcome back,</p>
+        <h1 class="dash-name" id="dashName">Customer</h1>
+        <p class="dash-email" id="dashEmail">—</p>
+      </div>
+      <button class="logout-btn" id="logoutBtn">Log Out</button>
+    </div>
+
+    <div class="dashboard-layout">
+
+      <!-- SIDEBAR NAV -->
+      <aside class="dash-sidebar">
+        <button class="dash-nav-item active" data-panel="overview">📊 Overview</button>
+        <button class="dash-nav-item" data-panel="orders">📦 My Orders</button>
+        <button class="dash-nav-item" data-panel="wishlist">💛 Wishlist</button>
+        <button class="dash-nav-item" data-panel="addresses">📍 Addresses</button>
+        <button class="dash-nav-item" data-panel="settings">⚙️ Account Settings</button>
+      </aside>
+
+      <!-- PANELS -->
+      <div class="dash-main">
+
+        <!-- OVERVIEW -->
+        <div class="dash-panel active" id="panel-overview">
+          <h2>Account Overview</h2>
+          <div class="overview-stats">
+            <div class="ov-stat">
+              <span class="ov-num" id="ovOrderCount">0</span>
+              <span class="ov-label">Total Orders</span>
+            </div>
+            <div class="ov-stat">
+              <span class="ov-num" id="ovWishlistCount">0</span>
+              <span class="ov-label">Wishlist Items</span>
+            </div>
+            <div class="ov-stat">
+              <span class="ov-num" id="ovCartCount">0</span>
+              <span class="ov-label">Items in Cart</span>
+            </div>
+          </div>
+
+          <h3 class="dash-subheading">Recent Orders</h3>
+          <div id="recentOrdersList" class="recent-orders-list">
+            <p class="empty-msg">No orders yet — your purchases will show up here.</p>
+          </div>
+
+          <a href="products.html" class="btn-primary" style="display:inline-block; margin-top:20px;">Continue Shopping</a>
+        </div>
+
+        <!-- ORDERS -->
+        <div class="dash-panel" id="panel-orders">
+          <h2>My Orders</h2>
+          <div id="ordersList" class="orders-full-list">
+            <p class="empty-msg">You haven't placed any orders yet.</p>
+          </div>
+        </div>
+
+        <!-- WISHLIST -->
+        <div class="dash-panel" id="panel-wishlist">
+          <h2>My Wishlist</h2>
+          <div class="wishlist-grid" id="wishlistGrid">
+            <p class="empty-msg">Your wishlist is empty. Tap the ♡ icon on any product to save it here.</p>
+          </div>
+        </div>
+
+        <!-- ADDRESSES -->
+        <div class="dash-panel" id="panel-addresses">
+          <h2>Saved Addresses</h2>
+          <div id="addressList" class="address-list">
+            <p class="empty-msg">No saved addresses yet.</p>
+          </div>
+          <button class="btn-ghost-dark" id="addAddressBtn">+ Add New Address</button>
+
+          <div class="address-form-box" id="addressFormBox" style="display:none;">
+            <input type="text" id="addrFullName" placeholder="Full Name"/>
+            <input type="text" id="addrLine1" placeholder="Street Address"/>
+            <div class="addr-row">
+              <input type="text" id="addrCity" placeholder="City"/>
+              <input type="text" id="addrState" placeholder="State"/>
+              <input type="text" id="addrZip" placeholder="ZIP Code"/>
+            </div>
+            <input type="text" id="addrPhone" placeholder="Phone Number"/>
+            <button class="auth-submit-btn" id="saveAddressBtn">Save Address</button>
+          </div>
+        </div>
+
+        <!-- SETTINGS -->
+        <div class="dash-panel" id="panel-settings">
+          <h2>Account Settings</h2>
+          <div class="settings-form">
+            <label class="auth-label">Full Name</label>
+            <input type="text" id="settingsName"/>
+            <label class="auth-label">Email Address</label>
+            <input type="email" id="settingsEmail" disabled/>
+            <p class="field-hint">Email cannot be changed directly. Contact support if needed.</p>
+            <button class="auth-submit-btn" id="saveSettingsBtn">Save Changes</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script type="module" src="firebase-config.js"></script>
+  <script src="app.js"></script>
+  <script src="account.js"></script>
+</body>
+</html>
