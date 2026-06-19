@@ -1,0 +1,8 @@
+{
+  "name": "velourx-functions",
+  "version": "1.0.0",
+  "description": "Serverless functions for VELOURX checkout",
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}
